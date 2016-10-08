@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { Hero } from './hero';
-import { Pharmacy } from './pharmacy';
 
+export class Pharmacy{
+    id: number;
+    name: string;
+    address: string;
+    phone: string;
+    hours: string;
+}
 
 
 const PHARMACIES : Pharmacy[] = [
@@ -15,7 +20,7 @@ const PHARMACIES : Pharmacy[] = [
 
 @Component({
    selector: 'my-app',
- template: '<h1>{{title}}</h1><h2>My Pharmacies</h2><ul class="pharmacies"><li *ngFor="let pharmacy of pharmacies" [class.selected]="pharmacy === selectedPharmacy" (click)="onSelect(pharmacy)"><span class="badge">{{pharmacy.id}}</span> {{pharmacy.name}} -- {{pharmacy.hours}}</li></ul><my-pharmacy-detail [pharmacy]="selectedPharmacy"></my-pharmacy-detail>',
+ template: '<h1>{{title}}</h1><h2>My Pharmacies</h2><ul class="pharmacies"><li *ngFor="let pharmacy of pharmacies" [class.selected]="pharmacy === selectedPharmacy" (click)="onSelect(pharmacy)"><span class="badge">{{pharmacy.id}}</span> {{pharmacy.name}} -- {{pharmacy.hours}}</li></ul><div *ngIf="selectedPharmacy"><h2>{{selectedPharmacy.name}} details!</h2><div><label>Id: </label>{{selectedPharmacy.id}}</div><div><label>Name: </label><input [(ngModel)]="selectedPharmacy.name" placeholder="name"/></div><div><label>Address: </label>{{selectedPharmacy.address}}</div><div><label>Phone Number: </label>{{selectedPharmacy.phone}}</div><div><label>Hours: </label>{{selectedPharmacy.hours}}</div></div>',
     styles: [`
   .selected {
     background-color: #CFD8DC !important;
